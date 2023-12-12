@@ -74,114 +74,103 @@ if(isset($_POST['delete_playlist'])){
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="../css/admin_style.css">
-
 </head>
 <body>
-
-<?php include '../components/admin_header.php'; ?>
+   <?php include '../components/admin_header.php'; ?>
+      
+   <section class="contents">
+      <h1 class="heading">CONTENTS</h1>
    
-<section class="contents">
-
-   <h1 class="heading">CONTENTS</h1>
-
-   <div class="box-container">
-
-   <?php
-      if(isset($_POST['search']) or isset($_POST['search_btn'])){
-      $search = $_POST['search'];
-      $select_videos = $conn->prepare("SELECT * FROM `content` WHERE title LIKE '%{$search}%' AND tutor_id = ? ORDER BY date DESC");
-      $select_videos->execute([$tutor_id]);
-      if($select_videos->rowCount() > 0){
-         while($fecth_videos = $select_videos->fetch(PDO::FETCH_ASSOC)){ 
-            $video_id = $fecth_videos['id'];
-   ?>
-      <div class="box">
-         <div class="flex">
-            <div><i class="fas fa-dot-circle" style="<?php if($fecth_videos['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"></i><span style="<?php if($fecth_videos['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"><?= $fecth_videos['status']; ?></span></div>
-            <div><i class="fas fa-calendar"></i><span><?= $fecth_videos['date']; ?></span></div>
+      <div class="box-container">
+      <?php
+         if(isset($_POST['search']) or isset($_POST['search_btn'])){
+         $search = $_POST['search'];
+         $select_videos = $conn->prepare("SELECT * FROM `content` WHERE title LIKE '%{$search}%' AND tutor_id = ? ORDER BY date DESC");
+         $select_videos->execute([$tutor_id]);
+         if($select_videos->rowCount() > 0){
+            while($fecth_videos = $select_videos->fetch(PDO::FETCH_ASSOC)){ 
+               $video_id = $fecth_videos['id'];
+      ?>
+         <div class="box">
+            <div class="flex">
+               <div><i class="fas fa-dot-circle" style="<?php if($fecth_videos['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"></i><span style="<?php if($fecth_videos['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"><?= $fecth_videos['status']; ?></span></div>
+               <div><i class="fas fa-calendar"></i><span><?= $fecth_videos['date']; ?></span></div>
+            </div>
+            <img src="../uploaded_files/<?= $fecth_videos['thumb']; ?>" class="thumb" alt="">
+            <h3 class="title"><?= $fecth_videos['title']; ?></h3>
+            <form action="" method="post" class="flex-btn">
+               <input type="hidden" name="video_id" value="<?= $video_id; ?>">
+               <a href="update_content.php?get_id=<?= $video_id; ?>" class="option-btn">UPDATE</a>
+               <input type="submit" value="delete" class="delete-btn" onclick="return confirm('delete this video?');" name="delete_video">
+            </form>
+            <a href="view_content.php?get_id=<?= $video_id; ?>" class="btn"> VIEW CONTENT</a>
          </div>
-         <img src="../uploaded_files/<?= $fecth_videos['thumb']; ?>" class="thumb" alt="">
-         <h3 class="title"><?= $fecth_videos['title']; ?></h3>
-         <form action="" method="post" class="flex-btn">
-            <input type="hidden" name="video_id" value="<?= $video_id; ?>">
-            <a href="update_content.php?get_id=<?= $video_id; ?>" class="option-btn">UPDATE</a>
-            <input type="submit" value="delete" class="delete-btn" onclick="return confirm('delete this video?');" name="delete_video">
-         </form>
-         <a href="view_content.php?get_id=<?= $video_id; ?>" class="btn"> VIEW CONTENT</a>
-      </div>
-   <?php
+      <?php
+            }
+         }else{
+            echo '<p class="empty"> NO CONTENT FOUNDS!</p>';
          }
       }else{
-         echo '<p class="empty"> NO CONTENT FOUNDS!</p>';
-      }
-   }else{
-      echo '<p class="empty"> PLEASE SEARCH SOMETHING!</p>';
-   }
-   ?>
-
-   </div>
-
-</section>
-
-<section class="playlists">
-
-   <h1 class="heading">PLAYLIST</h1>
-
-   <div class="box-container">
-   
-      <?php
-      if(isset($_POST['search']) or isset($_POST['search_btn'])){
-         $search = $_POST['search'];
-         $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE title LIKE '%{$search}%' AND tutor_id = ? ORDER BY date DESC");
-         $select_playlist->execute([$tutor_id]);
-         if($select_playlist->rowCount() > 0){
-         while($fetch_playlist = $select_playlist->fetch(PDO::FETCH_ASSOC)){
-            $playlist_id = $fetch_playlist['id'];
-            $count_videos = $conn->prepare("SELECT * FROM `content` WHERE playlist_id = ?");
-            $count_videos->execute([$playlist_id]);
-            $total_videos = $count_videos->rowCount();
-      ?>
-      <div class="box">
-         <div class="flex">
-            <div><i class="fas fa-circle-dot" style="<?php if($fetch_playlist['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"></i><span style="<?php if($fetch_playlist['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"><?= $fetch_playlist['status']; ?></span></div>
-            <div><i class="fas fa-calendar"></i><span><?= $fetch_playlist['date']; ?></span></div>
-         </div>
-         <div class="thumb">
-            <span><?= $total_videos; ?></span>
-            <img src="../uploaded_files/<?= $fetch_playlist['thumb']; ?>" alt="">
-         </div>
-         <h3 class="title"><?= $fetch_playlist['title']; ?></h3>
-         <p class="description"><?= $fetch_playlist['description']; ?></p>
-         <form action="" method="post" class="flex-btn">
-            <input type="hidden" name="playlist_id" value="<?= $playlist_id; ?>">
-            <a href="update_playlist.php?get_id=<?= $playlist_id; ?>" class="option-btn">UPDATE</a>
-            <input type="submit" value="delete_playlist" class="delete-btn" onclick="return confirm('DELETE THIS PLAYLIST?');" name="delete">
-         </form>
-         <a href="view_playlist.php?get_id=<?= $playlist_id; ?>" class="btn">VIEW PLAYLIST</a>
-      </div>
-      <?php
-         } 
-      }else{
-         echo '<p class="empty"> NO PLAYLIST FOUND!</p>';
-      }}else{
          echo '<p class="empty"> PLEASE SEARCH SOMETHING!</p>';
       }
       ?>
-
-   </div>
-
-</section>
-
-
-<?php include '../components/footer.php'; ?>
-
-<script src="../js/admin_script.js"></script>
-
-<script>
-   document.querySelectorAll('.playlists .box-container .box .description').forEach(content => {
-      if(content.innerHTML.length > 100) content.innerHTML = content.innerHTML.slice(0, 100);
-   });
-</script>
+   
+      </div>
+   
+   </section>
+   <section class="playlists">
+      <h1 class="heading">PLAYLIST</h1>
+   
+      <div class="box-container">
+         <?php
+         if(isset($_POST['search']) or isset($_POST['search_btn'])){
+            $search = $_POST['search'];
+            $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE title LIKE '%{$search}%' AND tutor_id = ? ORDER BY date DESC");
+            $select_playlist->execute([$tutor_id]);
+            if($select_playlist->rowCount() > 0){
+            while($fetch_playlist = $select_playlist->fetch(PDO::FETCH_ASSOC)){
+               $playlist_id = $fetch_playlist['id'];
+               $count_videos = $conn->prepare("SELECT * FROM `content` WHERE playlist_id = ?");
+               $count_videos->execute([$playlist_id]);
+               $total_videos = $count_videos->rowCount();
+         ?>
+         <div class="box">
+            <div class="flex">
+               <div><i class="fas fa-circle-dot" style="<?php if($fetch_playlist['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"></i><span style="<?php if($fetch_playlist['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"><?= $fetch_playlist['status']; ?></span></div>
+               <div><i class="fas fa-calendar"></i><span><?= $fetch_playlist['date']; ?></span></div>
+            </div>
+            <div class="thumb">
+               <span><?= $total_videos; ?></span>
+               <img src="../uploaded_files/<?= $fetch_playlist['thumb']; ?>" alt="">
+            </div>
+            <h3 class="title"><?= $fetch_playlist['title']; ?></h3>
+            <p class="description"><?= $fetch_playlist['description']; ?></p>
+            <form action="" method="post" class="flex-btn">
+               <input type="hidden" name="playlist_id" value="<?= $playlist_id; ?>">
+               <a href="update_playlist.php?get_id=<?= $playlist_id; ?>" class="option-btn">UPDATE</a>
+               <input type="submit" value="delete_playlist" class="delete-btn" onclick="return confirm('DELETE THIS PLAYLIST?');" name="delete">
+            </form>
+            <a href="view_playlist.php?get_id=<?= $playlist_id; ?>" class="btn">VIEW PLAYLIST</a>
+         </div>
+         <?php
+            } 
+         }else{
+            echo '<p class="empty"> NO PLAYLIST FOUND!</p>';
+         }}else{
+            echo '<p class="empty"> PLEASE SEARCH SOMETHING!</p>';
+         }
+         ?>
+      </div>
+   </section>
+   
+   <?php include '../components/footer.php'; ?>
+   
+   <script src="../js/admin_script.js"></script>
+   <script>
+      document.querySelectorAll('.playlists .box-container .box .description').forEach(content => {
+         if(content.innerHTML.length > 100) content.innerHTML = content.innerHTML.slice(0, 100);
+      });
+   </script>
 
 </body>
 </html>

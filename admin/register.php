@@ -39,7 +39,6 @@ if(isset($_POST['submit'])){
          $message[] = 'NEW TUTOR REGISTERED! PLEASE LOGIN NOW';
       }
    }
-
 }
 
 ?>
@@ -61,97 +60,81 @@ if(isset($_POST['submit'])){
 </head>
 <body style="padding-left: 0;">
 
-<?php
-if(isset($message)){
-   foreach($message as $message){
-      echo '
-      <div class="message form">
-         <span>'.$message.'</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
+   <?php
+   if(isset($message)){
+      foreach($message as $message){
+         echo '
+         <div class="message form">
+            <span>'.$message.'</span>
+            <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+         </div>
+         ';
+      }
    }
-}
-?>
-
-<!-- register section starts  -->
-
-<section class="form-container">
-
-   <form class="register" action="" method="post" enctype="multipart/form-data">
-      <h3>REGISTER NEW</h3>
-      <div class="flex">
-         <div class="col">
-            <p>YOUR NAME <span>*</span></p>
-            <input type="text" name="name" placeholder="ENTER YOUR NAME" maxlength="100" required class="box">
-            <p>YOUR PROFESSION<span>*</span></p>
-            <select name="profession" class="box" required>
-               <option value="" disabled selected>-- SELECT YOUR PROFESSION</option>
-               <option value="developer">Developer</option>
-               <option value="desginer">Desginer</option>
-               <option value="musician">Musician</option>
-               <option value="biologist">Biologist</option>
-               <option value="teacher">Teacher</option>
-               <option value="engineer">Engineer</option>
-               <option value="lawyer">Lawyer</option>
-               <option value="accountant">Accountant</option>
-               <option value="doctor">Doctor</option>
-               <option value="journalist">Journalist</option>
-               <option value="photographer">Photographer</option>
-            </select>
-            <p>YOUR EMAIL<span>*</span></p>
-            <input type="email" name="email" placeholder="ENTER YOUR EMAIL" maxlength="100" required class="box">
-         </div>
-         <div class="col">
-            <p>YOUR PASSWORD<span>*</span></p>
-            <input type="password" name="pass" placeholder="ENTER YOUR PASSWORD" maxlength="100" required class="box">
-            <p>CONFIRM PASSWORD<span>*</span></p>
-            <input type="password" name="cpass" placeholder="CONFIRM YOUR PASSWORD" maxlength="100" required class="box">
-            <p>SELECT PIC <span>*</span></p>
-            <input type="file" name="image" accept="image/*" required class="box">
-         </div>
-      </div>
-      <p class="link"> ALREADY HAVE AN ACCOUNT?<a href="login.php"> LOGIN </a></p>
-      <input type="submit" name="submit" value="REGISTER" class="btn">
-   </form>
-
-</section>
-
-<!-- registe section ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-
-let darkMode = localStorage.getItem('dark-mode');
-let body = document.body;
-
-const enabelDarkMode = () =>{
-   body.classList.add('dark');
-   localStorage.setItem('dark-mode', 'enabled');
-}
-
-const disableDarkMode = () =>{
-   body.classList.remove('dark');
-   localStorage.setItem('dark-mode', 'disabled');
-}
-
-if(darkMode === 'enabled'){
-   enabelDarkMode();
-}else{
-   disableDarkMode();
-}
-
-</script>
+   ?>
    
+   <!-- register section starts  -->
+   
+   <section class="form-container">
+      <form class="register" action="" method="post" enctype="multipart/form-data">
+         <h3>REGISTER NEW</h3>
+         <div class="flex">
+            <div class="col">
+               <p>YOUR NAME <span>*</span></p>
+               <input type="text" name="name" placeholder="ENTER YOUR NAME" maxlength="100" required class="box">
+               <p>YOUR PROFESSION<span>*</span></p>
+               <select name="profession" class="box" required>
+                  <option value="" disabled selected>-- SELECT YOUR PROFESSION</option>
+                  <option value="developer">Developer</option>
+                  <option value="desginer">Desginer</option>
+                  <option value="musician">Musician</option>
+                  <option value="biologist">Biologist</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="engineer">Engineer</option>
+                  <option value="lawyer">Lawyer</option>
+                  <option value="accountant">Accountant</option>
+                  <option value="doctor">Doctor</option>
+                  <option value="journalist">Journalist</option>
+                  <option value="photographer">Photographer</option>
+               </select>
+               <p>YOUR EMAIL<span>*</span></p>
+               <input type="email" name="email" placeholder="ENTER YOUR EMAIL" maxlength="100" required class="box">
+            </div>
+            <div class="col">
+               <p>YOUR PASSWORD<span>*</span></p>
+               <input type="password" name="pass" placeholder="ENTER YOUR PASSWORD" maxlength="100" required class="box">
+               <p>CONFIRM PASSWORD<span>*</span></p>
+               <input type="password" name="cpass" placeholder="CONFIRM YOUR PASSWORD" maxlength="100" required class="box">
+               <p>SELECT PIC <span>*</span></p>
+               <input type="file" name="image" accept="image/*" required class="box">
+            </div>
+         </div>
+         <p class="link"> ALREADY HAVE AN ACCOUNT?<a href="login.php"> LOGIN </a></p>
+         <input type="submit" name="submit" value="REGISTER" class="btn">
+      </form>
+   </section>
+   
+   <!-- registe section ends -->
+   
+   <script>
+      let darkMode = localStorage.getItem('dark-mode');
+      let body = document.body;
+      
+      const enabelDarkMode = () =>{
+         body.classList.add('dark');
+         localStorage.setItem('dark-mode', 'enabled');
+      }
+      
+      const disableDarkMode = () =>{
+         body.classList.remove('dark');
+         localStorage.setItem('dark-mode', 'disabled');
+      }
+      
+      if(darkMode === 'enabled'){
+         enabelDarkMode();
+      }else{
+         disableDarkMode();
+      }
+   </script>
 </body>
 </html>

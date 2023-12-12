@@ -17,7 +17,6 @@ if(isset($_GET['get_id'])){
 }
 
 if(isset($_POST['update'])){
-
    $video_id = $_POST['video_id'];
    $video_id = filter_var($video_id, FILTER_UNSAFE_RAW);
    $status = $_POST['status'];
@@ -105,8 +104,6 @@ if(isset($_POST['delete_video'])){
    $delete_content = $conn->prepare("DELETE FROM `content` WHERE id = ?");
    $delete_content->execute([$delete_id]);
    header('location:contents.php');
-
-    
 }
 
 ?>
@@ -189,7 +186,7 @@ if(isset($_POST['delete_video'])){
    <?php
          }
       }else{
-         echo '<p class="empty">VIDEO NOT FOUND! <a href="add_content.php" class="btn" style="margin-top: 1.5rem;">add videos</a></p>';
+         echo '<p class="empty">VIDEO NOT FOUND! <a href="add_content.php" class="btn" style="margin-top: 1.5rem;">Add Videos</a></p>';
       }
    ?>
 

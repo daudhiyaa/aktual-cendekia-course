@@ -41,15 +41,12 @@ $total_comments = $select_comments->rowCount();
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="../css/admin_style.css">
-
 </head>
 
 <body>
-
    <?php include '../components/admin_header.php'; ?>
 
    <section class="tutor-profile" style="min-height: calc(100vh - 19rem);">
-
       <h1 class="heading">Profile Details</h1>
 
       <div class="details">
@@ -82,27 +79,8 @@ $total_comments = $select_comments->rowCount();
             </div>
          </div>
       </div>
-
    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    <?php include '../components/footer.php'; ?>
-
    <script src="../js/admin_script.js"></script>
-
 </body>
-
 </html>
