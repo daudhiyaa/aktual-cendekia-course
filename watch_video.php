@@ -18,7 +18,7 @@ if(isset($_GET['get_id'])){
 if(isset($_POST['like_content'])){
    if($user_id != ''){
       $content_id = $_POST['content_id'];
-      $content_id = filter_var($content_id, FILTER_SANITIZE_STRING);
+      $content_id = filter_var($content_id, FILTER_UNSAFE_RAW);
 
       $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
       $select_content->execute([$content_id]);
@@ -47,9 +47,9 @@ if(isset($_POST['add_comment'])){
    if($user_id != ''){
       $id = unique_id();
       $comment_box = $_POST['comment_box'];
-      $comment_box = filter_var($comment_box, FILTER_SANITIZE_STRING);
+      $comment_box = filter_var($comment_box, FILTER_UNSAFE_RAW);
       $content_id = $_POST['content_id'];
-      $content_id = filter_var($content_id, FILTER_SANITIZE_STRING);
+      $content_id = filter_var($content_id, FILTER_UNSAFE_RAW);
 
       $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
       $select_content->execute([$content_id]);
@@ -79,7 +79,7 @@ if(isset($_POST['add_comment'])){
 
 if(isset($_POST['delete_comment'])){
    $delete_id = $_POST['comment_id'];
-   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+   $delete_id = filter_var($delete_id, FILTER_UNSAFE_RAW);
 
    $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ?");
    $verify_comment->execute([$delete_id]);
@@ -95,9 +95,9 @@ if(isset($_POST['delete_comment'])){
 
 if(isset($_POST['update_now'])){
    $update_id = $_POST['update_id'];
-   $update_id = filter_var($update_id, FILTER_SANITIZE_STRING);
+   $update_id = filter_var($update_id, FILTER_UNSAFE_RAW);
    $update_box = $_POST['update_box'];
-   $update_box = filter_var($update_box, FILTER_SANITIZE_STRING);
+   $update_box = filter_var($update_box, FILTER_UNSAFE_RAW);
 
    $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ? AND comment = ?");
    $verify_comment->execute([$update_id, $update_box]);
@@ -134,7 +134,7 @@ if(isset($_POST['update_now'])){
    <?php
       if(isset($_POST['edit_comment'])){
          $edit_id = $_POST['comment_id'];
-         $edit_id = filter_var($edit_id, FILTER_SANITIZE_STRING);
+         $edit_id = filter_var($edit_id, FILTER_UNSAFE_RAW);
          $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ? LIMIT 1");
          $verify_comment->execute([$edit_id]);
          if($verify_comment->rowCount() > 0){

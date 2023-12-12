@@ -18,7 +18,7 @@ if(isset($_GET['get_id'])){
 if(isset($_POST['save_list'])){
    if($user_id != ''){
       $list_id = $_POST['list_id'];
-      $list_id = filter_var($list_id, FILTER_SANITIZE_STRING);
+      $list_id = filter_var($list_id, FILTER_UNSAFE_RAW);
 
       $select_list = $conn->prepare("SELECT * FROM `bookmark` WHERE user_id = ? AND playlist_id = ?");
       $select_list->execute([$user_id, $list_id]);

@@ -19,11 +19,11 @@ if(isset($_POST['submit'])){
    $prev_image = $fetch_tutor['image'];
 
    $name = $_POST['name'];
-   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $name = filter_var($name, FILTER_UNSAFE_RAW);
    $profession = $_POST['profession'];
-   $profession = filter_var($profession, FILTER_SANITIZE_STRING);
+   $profession = filter_var($profession, FILTER_UNSAFE_RAW);
    $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $email = filter_var($email, FILTER_UNSAFE_RAW);
 
    if(!empty($name)){
       $update_name = $conn->prepare("UPDATE `tutors` SET name = ? WHERE id = ?");
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
    }
 
    $image = $_FILES['image']['name'];
-   $image = filter_var($image, FILTER_SANITIZE_STRING);
+   $image = filter_var($image, FILTER_UNSAFE_RAW);
    $ext = pathinfo($image, PATHINFO_EXTENSION);
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
@@ -73,11 +73,11 @@ if(isset($_POST['submit'])){
 
    $empty_pass = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
    $old_pass = sha1($_POST['old_pass']);
-   $old_pass = filter_var($old_pass, FILTER_SANITIZE_STRING);
+   $old_pass = filter_var($old_pass, FILTER_UNSAFE_RAW);
    $new_pass = sha1($_POST['new_pass']);
-   $new_pass = filter_var($new_pass, FILTER_SANITIZE_STRING);
+   $new_pass = filter_var($new_pass, FILTER_UNSAFE_RAW);
    $cpass = sha1($_POST['cpass']);
-   $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+   $cpass = filter_var($cpass, FILTER_UNSAFE_RAW);
 
    if($old_pass != $empty_pass){
       if($old_pass != $prev_pass){
@@ -144,15 +144,15 @@ if(isset($_POST['submit'])){
                <option value="photographer">Photographer</option>
             </select>
             <p>YOUR EMAIL</p>
-            <input type="email" name="email" placeholder="<?= $fetch_profile['email']; ?>" maxlength="20"  class="box">
+            <input type="email" name="email" placeholder="<?= $fetch_profile['email']; ?>" maxlength="100"  class="box">
          </div>
          <div class="col">
             <p>OLD PASSWORD :</p>
-            <input type="password" name="old_pass" placeholder="ENTER YOUR OLD PASSWORD" maxlength="20"  class="box">
+            <input type="password" name="old_pass" placeholder="ENTER YOUR OLD PASSWORD" maxlength="100"  class="box">
             <p>NEW PASSWORD :</p>
-            <input type="password" name="new_pass" placeholder="ENTER YOUR NEW PASSWORD" maxlength="20"  class="box">
+            <input type="password" name="new_pass" placeholder="ENTER YOUR NEW PASSWORD" maxlength="100"  class="box">
             <p>CONFIRM PASSWORD :</p>
-            <input type="password" name="cpass" placeholder="CONFIRM YOUR NEW PASSWORD" maxlength="20"  class="box">
+            <input type="password" name="cpass" placeholder="CONFIRM YOUR NEW PASSWORD" maxlength="100"  class="box">
          </div>
       </div>
       <p>UPDATE PIC :</p>
