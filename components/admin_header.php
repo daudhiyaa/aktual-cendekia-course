@@ -40,10 +40,16 @@ if(isset($message)){
          <h3><?= $fetch_profile['name']; ?></h3>
          <span><?= $fetch_profile['profession']; ?></span>
          <a href="profile.php" class="btn">View Profile</a>
+         <?php
+            if($tutor_id=="") {
+         ?>
          <div class="flex-btn">
             <a href="login.php" class="option-btn">Login</a>
             <a href="register.php" class="option-btn">Register</a>
          </div>
+         <?php
+            }
+         ?>
          <a href="../components/admin_logout.php" onclick="return confirm('logout from this website?');" class="delete-btn">
             Logout
          </a>
