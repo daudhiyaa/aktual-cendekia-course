@@ -49,7 +49,7 @@ if(isset($_POST['update'])){
 
    if(!empty($thumb)){
       if($thumb_size > 2000000){
-         $message[] = 'image size is too large!';
+         $message[] = 'IMAGE SIZE IS TOO LARGE!';
       }else{
          $update_thumb = $conn->prepare("UPDATE `content` SET thumb = ? WHERE id = ?");
          $update_thumb->execute([$rename_thumb, $video_id]);
@@ -78,7 +78,7 @@ if(isset($_POST['update'])){
       }
    }
 
-   $message[] = 'content updated!';
+   $message[] = 'CONTENT UPDATED!';
 
 }
 
@@ -105,6 +105,7 @@ if(isset($_POST['delete_video'])){
    $delete_content = $conn->prepare("DELETE FROM `content` WHERE id = ?");
    $delete_content->execute([$delete_id]);
    header('location:contents.php');
+
     
 }
 
@@ -116,7 +117,7 @@ if(isset($_POST['delete_video'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Update video</title>
+   <title>UPDATE VIDEO</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -131,7 +132,7 @@ if(isset($_POST['delete_video'])){
    
 <section class="video-form">
 
-   <h1 class="heading">update content</h1>
+   <h1 class="heading">UPDATE CONTENT</h1>
 
    <?php
       $select_videos = $conn->prepare("SELECT * FROM `content` WHERE id = ? AND tutor_id = ?");
@@ -147,16 +148,16 @@ if(isset($_POST['delete_video'])){
       <p>update status <span>*</span></p>
       <select name="status" class="box" required>
          <option value="<?= $fecth_videos['status']; ?>" selected><?= $fecth_videos['status']; ?></option>
-         <option value="active">active</option>
-         <option value="deactive">deactive</option>
+         <option value="active">ACTIVE</option>
+         <option value="deactive">DEACTIVE</option>
       </select>
-      <p>update title <span>*</span></p>
-      <input type="text" name="title" maxlength="100" required placeholder="enter video title" class="box" value="<?= $fecth_videos['title']; ?>">
-      <p>update description <span>*</span></p>
-      <textarea name="description" class="box" required placeholder="write description" maxlength="1000" cols="30" rows="10"><?= $fecth_videos['description']; ?></textarea>
-      <p>update playlist</p>
+      <p>UPDATE TITLE<span>*</span></p>
+      <input type="text" name="title" maxlength="100" required placeholder="ENTER VIDEO TITLE" class="box" value="<?= $fecth_videos['title']; ?>">
+      <p>UPDATE DESCRIPTION <span>*</span></p>
+      <textarea name="description" class="box" required placeholder="WRITE DESCRIPTION" maxlength="1000" cols="30" rows="10"><?= $fecth_videos['description']; ?></textarea>
+      <p>UPDATE PLAYLIST</p>
       <select name="playlist" class="box">
-         <option value="<?= $fecth_videos['playlist_id']; ?>" selected>--select playlist</option>
+         <option value="<?= $fecth_videos['playlist_id']; ?>" selected>--SELECT PLAYLIST</option>
          <?php
          $select_playlists = $conn->prepare("SELECT * FROM `playlist` WHERE tutor_id = ?");
          $select_playlists->execute([$tutor_id]);
@@ -169,48 +170,32 @@ if(isset($_POST['delete_video'])){
          ?>
          <?php
          }else{
-            echo '<option value="" disabled>no playlist created yet!</option>';
+            echo '<option value="" disabled>NO PLAYLIST CREATED YET!</option>';
          }
          ?>
       </select>
       <img src="../uploaded_files/<?= $fecth_videos['thumb']; ?>" alt="">
-      <p>update thumbnail</p>
+      <p>UPDATE THUMBNAIL</p>
       <input type="file" name="thumb" accept="image/*" class="box">
       <video src="../uploaded_files/<?= $fecth_videos['video']; ?>" controls></video>
-      <p>update video</p>
+      <p>UPDATE VIDEO</p>
       <input type="file" name="video" accept="video/*" class="box">
       <input type="submit" value="update content" name="update" class="btn">
       <div class="flex-btn">
-         <a href="view_content.php?get_id=<?= $video_id; ?>" class="option-btn">view content</a>
+         <a href="view_content.php?get_id=<?= $video_id; ?>" class="option-btn">VIEW CONTENT</a>
          <input type="submit" value="delete content" name="delete_video" class="delete-btn">
       </div>
    </form>
    <?php
          }
       }else{
-         echo '<p class="empty">video not found! <a href="add_content.php" class="btn" style="margin-top: 1.5rem;">add videos</a></p>';
+         echo '<p class="empty">VIDEO NOT FOUND! <a href="add_content.php" class="btn" style="margin-top: 1.5rem;">add videos</a></p>';
       }
    ?>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php include '../components/footer.php'; ?>
 
 <script src="../js/admin_script.js"></script>
-
 </body>
 </html>
