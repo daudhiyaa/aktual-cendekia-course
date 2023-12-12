@@ -5,9 +5,9 @@ include '../components/connect.php';
 if (isset($_POST['submit'])) {
 
    $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $email = filter_var($email, FILTER_UNSAFE_RAW);
    $pass = sha1($_POST['pass']);
-   $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+   $pass = filter_var($pass, FILTER_UNSAFE_RAW);
 
    $select_tutor = $conn->prepare("SELECT * FROM `tutors` WHERE email = ? AND password = ? LIMIT 1");
    $select_tutor->execute([$email, $pass]);
@@ -62,11 +62,11 @@ if (isset($_POST['submit'])) {
       <form action="" method="post" enctype="multipart/form-data" class="login">
          <h3>Welcome Back!</h3>
          <p>Your Email <span>*</span></p>
-         <input type="email" name="email" placeholder="Enter Your Email" maxlength="20" required class="box">
+         <input type="email" name="email" placeholder="Enter Your Email" maxlength="100" required class="box">
          <p>Your Password <span>*</span></p>
-         <input type="password" name="pass" placeholder="Enter Your Password" maxlength="20" required class="box">
-         <p class="link">Don't Have An Account? <a href="register.php">Register New</a></p>
-         <input type="submit" name="submit" value="login now" class="btn">
+         <input type="password" name="pass" placeholder="Enter Your Password" maxlength="100" required class="box">
+         <p class="link">Don't Have An Account? <a href="register.php">Register</a></p>
+         <input type="submit" name="submit" value="Login" class="btn">
       </form>
 
    </section>

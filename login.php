@@ -10,9 +10,9 @@ if(isset($_COOKIE['user_id'])){
 
 if(isset($_POST['submit'])){
    $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $email = filter_var($email, FILTER_UNSAFE_RAW);
    $pass = sha1($_POST['pass']);
-   $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+   $pass = filter_var($pass, FILTER_UNSAFE_RAW);
 
    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ? LIMIT 1");
    $select_user->execute([$email, $pass]);
@@ -50,9 +50,9 @@ if(isset($_POST['submit'])){
       <form action="" method="post" enctype="multipart/form-data" class="login">
          <h3>Welcome Back!</h3>
          <p>Your Email <span>*</span></p>
-         <input type="email" name="email" placeholder="Enter Your Email" maxlength="50" required class="box">
+         <input type="email" name="email" placeholder="Enter Your Email" maxlength="100" required class="box">
          <p>Your Password <span>*</span></p>
-         <input type="password" name="pass" placeholder="Enter Your Password" maxlength="20" required class="box">
+         <input type="password" name="pass" placeholder="Enter Your Password" maxlength="100" required class="box">
          <p class="link">Don't Have an Account? <a href="register.php">Register Now</a></p>
          <input type="submit" name="submit" value="Login Now" class="btn">
       </form>

@@ -16,7 +16,7 @@ if(isset($message)){
       <a href="index.php" class="logo">Aktual Cendekia Course</a>
 
       <form action="search_course.php" method="post" class="search-form">
-         <input type="text" name="search_course" placeholder="search courses..." required maxlength="100">
+         <input type="text" name="search_course" placeholder="Search Courses..." required maxlength="100">
          <button type="submit" class="fas fa-search" name="search_course_btn"></button>
       </form>
 
@@ -39,17 +39,17 @@ if(isset($message)){
          <span>student</span>
          <a href="profile.php" class="btn">view profile</a>
          <div class="flex-btn">
-            <a href="login.php" class="option-btn">login</a>
-            <a href="register.php" class="option-btn">register</a>
+            <a href="login.php" class="option-btn">Login</a>
+            <a href="register.php" class="option-btn">Register</a>
          </div>
          <a href="components/user_logout.php" onclick="return confirm('logout from this website?');" class="delete-btn">logout</a>
          <?php
             }else{
          ?>
-         <h3>please login or register</h3>
+         <h3>Please Login or Register</h3>
          <div class="flex-btn">
-            <a href="login.php" class="option-btn">login</a>
-            <a href="register.php" class="option-btn">register</a>
+            <a href="login.php" class="option-btn">Login</a>
+            <a href="register.php" class="option-btn">Register</a>
          </div>
          <?php
             }
@@ -81,10 +81,10 @@ if(isset($message)){
          <?php
             }else{
          ?>
-         <h3>please login or register</h3>
+         <h3>Please Login or Register</h3>
          <div class="flex-btn" style="padding-top: .5rem;">
-            <a href="login.php" class="option-btn">login</a>
-            <a href="register.php" class="option-btn">register</a>
+            <a href="login.php" class="option-btn">Login</a>
+            <a href="register.php" class="option-btn">Register</a>
          </div>
          <?php
             }
@@ -92,13 +92,12 @@ if(isset($message)){
       </div>
 
    <nav class="navbar">
-      <a href="index.php"><i class="fas fa-home"></i><span>home</span></a>
-      <a href="about.php"><i class="fas fa-question"></i><span>about us</span></a>
-      <a href="courses.php"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
-      <a href="tutors.php"><i class="fas fa-chalkboard-user"></i><span>tutors</span></a>
-      <a href="contact.php"><i class="fas fa-headset"></i><span>contact us</span></a>
+      <a href="index.php"><i class="fas fa-home"></i><span>Home</span></a>
+      <a href="about.php"><i class="fas fa-question"></i><span>About Us</span></a>
+      <a href="courses.php"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
+      <a href="tutors.php"><i class="fas fa-chalkboard-user"></i><span>Tutors</span></a>
+      <a href="contact.php"><i class="fas fa-headset"></i><span>Contact Us</span></a>
    </nav>
-
 </div>
 
 <!-- side bar section ends -->

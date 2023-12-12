@@ -11,16 +11,16 @@ if(isset($_COOKIE['user_id'])){
 if(isset($_POST['submit'])){
    $id = unique_id();
    $name = $_POST['name'];
-   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $name = filter_var($name, FILTER_UNSAFE_RAW);
    $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $email = filter_var($email, FILTER_UNSAFE_RAW);
    $pass = sha1($_POST['pass']);
-   $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+   $pass = filter_var($pass, FILTER_UNSAFE_RAW);
    $cpass = sha1($_POST['cpass']);
-   $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+   $cpass = filter_var($cpass, FILTER_UNSAFE_RAW);
 
    $image = $_FILES['image']['name'];
-   $image = filter_var($image, FILTER_SANITIZE_STRING);
+   $image = filter_var($image, FILTER_UNSAFE_RAW);
    $ext = pathinfo($image, PATHINFO_EXTENSION);
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
@@ -78,20 +78,20 @@ if(isset($_POST['submit'])){
          <div class="flex">
             <div class="col">
                <p>Your Name <span>*</span></p>
-               <input type="text" name="name" placeholder="Enter Your Name" maxlength="50" required class="box">
+               <input type="text" name="name" placeholder="Enter Your Name" maxlength="100" required class="box">
                <p>Your Email <span>*</span></p>
-               <input type="email" name="email" placeholder="Enter Your Email" maxlength="20" required class="box">
+               <input type="email" name="email" placeholder="Enter Your Email" maxlength="100" required class="box">
             </div>
             <div class="col">
                <p>Your Password <span>*</span></p>
-               <input type="password" name="pass" placeholder="Enter Your Password" maxlength="20" required class="box">
+               <input type="password" name="pass" placeholder="Enter Your Password" maxlength="100" required class="box">
                <p>Confirm Password <span>*</span></p>
-               <input type="password" name="cpass" placeholder="Confirm Your Password" maxlength="20" required class="box">
+               <input type="password" name="cpass" placeholder="Confirm Your Password" maxlength="100" required class="box">
             </div>
          </div>
          <p>Select Image <span>*</span></p>
          <input type="file" name="image" accept="image/*" required class="box">
-         <p class="link">Already Have an Account? <a href="login.php">Loign</a></p>
+         <p class="link">Already Have an Account? <a href="login.php">Login</a></p>
          <input type="submit" name="submit" value="Register Now" class="btn">
       </form>
    </section>
