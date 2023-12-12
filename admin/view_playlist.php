@@ -50,14 +50,12 @@ if(isset($_POST['delete_video'])){
       $delete_comments->execute([$delete_id]);
       $delete_content = $conn->prepare("DELETE FROM `content` WHERE id = ?");
       $delete_content->execute([$delete_id]);
-      $message[] = 'video deleted!';
+      $message[] = 'VIDEO DELETED!';
    }else{
-      $message[] = 'video already deleted!';
+      $message[] = 'VIDEO ALREADY DELETED!';
    }
 
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +64,7 @@ if(isset($_POST['delete_video'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Playlist Details</title>
+   <title>PLAYLIST DETAILS</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -81,7 +79,7 @@ if(isset($_POST['delete_video'])){
    
 <section class="playlist-details">
 
-   <h1 class="heading">playlist details</h1>
+   <h1 class="heading">PLAYLIST DETAILS</h1>
 
    <?php
       $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE id = ? AND tutor_id = ?");
@@ -112,7 +110,7 @@ if(isset($_POST['delete_video'])){
    <?php
          }
       }else{
-         echo '<p class="empty">no playlist found!</p>';
+         echo '<p class="empty">NO PLAYLIST FOUND!</p>';
       }
    ?>
 
@@ -120,7 +118,7 @@ if(isset($_POST['delete_video'])){
 
 <section class="contents">
 
-   <h1 class="heading">playlist videos</h1>
+   <h1 class="heading">PLAYLIST VIDEOS</h1>
 
    <div class="box-container">
 
@@ -140,35 +138,21 @@ if(isset($_POST['delete_video'])){
          <h3 class="title"><?= $fecth_videos['title']; ?></h3>
          <form action="" method="post" class="flex-btn">
             <input type="hidden" name="video_id" value="<?= $video_id; ?>">
-            <a href="update_content.php?get_id=<?= $video_id; ?>" class="option-btn">update</a>
+            <a href="update_content.php?get_id=<?= $video_id; ?>" class="option-btn">UPDATE</a>
             <input type="submit" value="delete" class="delete-btn" onclick="return confirm('delete this video?');" name="delete_video">
          </form>
-         <a href="view_content.php?get_id=<?= $video_id; ?>" class="btn">watch video</a>
+         <a href="view_content.php?get_id=<?= $video_id; ?>" class="btn">WATCG VIDEOS</a>
       </div>
    <?php
          }
       }else{
-         echo '<p class="empty">no videos added yet! <a href="add_content.php" class="btn" style="margin-top: 1.5rem;">add videos</a></p>';
+         echo '<p class="empty">NO VIDEOS ADDED YET!<a href="add_content.php" class="btn" style="margin-top: 1.5rem;">add videos</a></p>';
       }
    ?>
 
    </div>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include '../components/footer.php'; ?>
 
