@@ -28,15 +28,15 @@ if(isset($_POST['submit'])){
    $select_tutor->execute([$email]);
    
    if($select_tutor->rowCount() > 0){
-      $message[] = 'email already taken!';
+      $message[] = 'EMAIL ALREADY TAKEN!';
    }else{
       if($pass != $cpass){
-         $message[] = 'confirm passowrd not matched!';
+         $message[] = 'CONFIRM PASSWORD NOT MATCHED!';
       }else{
          $insert_tutor = $conn->prepare("INSERT INTO `tutors`(id, name, profession, email, password, image) VALUES(?,?,?,?,?,?)");
          $insert_tutor->execute([$id, $name, $profession, $email, $cpass, $rename]);
          move_uploaded_file($image_tmp_name, $image_folder);
-         $message[] = 'new tutor registered! please login now';
+         $message[] = 'NEW TUTOR REGISTERED! PLEASE LOGIN NOW';
       }
    }
 
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>register</title>
+   <title>REGISTER</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -79,40 +79,40 @@ if(isset($message)){
 <section class="form-container">
 
    <form class="register" action="" method="post" enctype="multipart/form-data">
-      <h3>register new</h3>
+      <h3>REGISTER NEW</h3>
       <div class="flex">
          <div class="col">
-            <p>your name <span>*</span></p>
+            <p> YOUR NAME <span>*</span></p>
             <input type="text" name="name" placeholder="eneter your name" maxlength="50" required class="box">
-            <p>your profession <span>*</span></p>
+            <p> YOUR PROFESSION<span>*</span></p>
             <select name="profession" class="box" required>
-               <option value="" disabled selected>-- select your profession</option>
-               <option value="developer">developer</option>
-               <option value="desginer">desginer</option>
-               <option value="musician">musician</option>
-               <option value="biologist">biologist</option>
-               <option value="teacher">teacher</option>
-               <option value="engineer">engineer</option>
-               <option value="lawyer">lawyer</option>
-               <option value="accountant">accountant</option>
-               <option value="doctor">doctor</option>
-               <option value="journalist">journalist</option>
-               <option value="photographer">photographer</option>
+               <option value="" disabled selected>-- SELECT YOUR PROFESSION</option>
+               <option value="developer">Developer</option>
+               <option value="desginer">Desginer</option>
+               <option value="musician">Musician</option>
+               <option value="biologist">Biologist</option>
+               <option value="teacher">Teacher</option>
+               <option value="engineer">Engineer</option>
+               <option value="lawyer">Lawyer</option>
+               <option value="accountant">Accountant</option>
+               <option value="doctor">Doctor</option>
+               <option value="journalist">Journalist</option>
+               <option value="photographer">Photographer</option>
             </select>
             <p>your email <span>*</span></p>
-            <input type="email" name="email" placeholder="enter your email" maxlength="20" required class="box">
+            <input type="email" name="email" placeholder=" ENTER YOUR EMAIL" maxlength="20" required class="box">
          </div>
          <div class="col">
             <p>your password <span>*</span></p>
-            <input type="password" name="pass" placeholder="enter your password" maxlength="20" required class="box">
+            <input type="password" name="pass" placeholder="ENTER YOUR PASSWORD" maxlength="20" required class="box">
             <p>confirm password <span>*</span></p>
-            <input type="password" name="cpass" placeholder="confirm your password" maxlength="20" required class="box">
+            <input type="password" name="cpass" placeholder="CONFIRM YOUR PASSWORD" maxlength="20" required class="box">
             <p>select pic <span>*</span></p>
             <input type="file" name="image" accept="image/*" required class="box">
          </div>
       </div>
-      <p class="link">already have an account? <a href="login.php">login now</a></p>
-      <input type="submit" name="submit" value="register now" class="btn">
+      <p class="link"> ALREADY HAVE AN ACCOUNT?<a href="login.php"> LOGIN NOW </a></p>
+      <input type="submit" name="submit" value="REGISTER NOW" class="btn">
    </form>
 
 </section>
