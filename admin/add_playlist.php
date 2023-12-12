@@ -51,15 +51,11 @@ if (isset($_POST['submit'])) {
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="../css/admin_style.css">
-
 </head>
-
 <body>
-
    <?php include '../components/admin_header.php'; ?>
 
    <section class="playlist-form">
-
       <h1 class="heading">Create Playlist</h1>
 
       <form action="" method="post" enctype="multipart/form-data">
@@ -77,27 +73,10 @@ if (isset($_POST['submit'])) {
          <input type="file" name="image" accept="image/*" required class="box">
          <input type="submit" value="create playlist" name="submit" class="btn">
       </form>
-
    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    <?php include '../components/footer.php'; ?>
 
    <script src="../js/admin_script.js"></script>
-
 </body>
-
 </html>

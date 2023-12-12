@@ -11,21 +11,17 @@ if (isset($_COOKIE['tutor_id'])) {
 
 $select_contents = $conn->prepare("SELECT * FROM `content` WHERE tutor_id = ?");
 $select_contents->execute([$tutor_id]);
-$total_contents =
-  $select_contents->rowCount();
+$total_contents = $select_contents->rowCount();
 $select_playlists = $conn->prepare("SELECT * FROM
 `playlist` WHERE tutor_id = ?");
 $select_playlists->execute([$tutor_id]);
 $total_playlists = $select_playlists->rowCount();
-$select_likes =
-  $conn->prepare("SELECT * FROM `likes` WHERE tutor_id = ?");
+$select_likes = $conn->prepare("SELECT * FROM `likes` WHERE tutor_id = ?");
 $select_likes->execute([$tutor_id]);
 $total_likes = $select_likes->rowCount();
-$select_comments = $conn->prepare("SELECT * FROM `comments` WHERE tutor_id =
-?");
+$select_comments = $conn->prepare("SELECT * FROM `comments` WHERE tutor_id = ?");
 $select_comments->execute([$tutor_id]);
-$total_comments =
-  $select_comments->rowCount();
+$total_comments = $select_comments->rowCount();
 
 ?>
 
@@ -82,15 +78,6 @@ $total_comments =
         <p>Total Comments</p>
         <a href="comments.php" class="btn">View Comments</a>
       </div>
-
-      <div class="box">
-        <h3>Quick Select</h3>
-        <p>Login or Register</p>
-        <div class="flex-btn">
-          <a href="login.php" class="option-btn">Login</a>
-          <a href="register.php" class="option-btn">Register</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -98,5 +85,4 @@ $total_comments =
 
   <script src="../js/admin_script.js"></script>
 </body>
-
 </html>

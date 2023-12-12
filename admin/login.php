@@ -3,7 +3,6 @@
 include '../components/connect.php';
 
 if (isset($_POST['submit'])) {
-
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_UNSAFE_RAW);
    $pass = sha1($_POST['pass']);
@@ -39,9 +38,7 @@ if (isset($_POST['submit'])) {
    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
-
 <body style="padding-left: 0;">
-
    <?php
    if (isset($message)) {
       foreach ($message as $message) {
@@ -58,7 +55,6 @@ if (isset($_POST['submit'])) {
    <!-- register section starts  -->
 
    <section class="form-container">
-
       <form action="" method="post" enctype="multipart/form-data" class="login">
          <h3>Welcome Back!</h3>
          <p>Your Email <span>*</span></p>
@@ -68,24 +64,9 @@ if (isset($_POST['submit'])) {
          <p class="link">Don't Have An Account? <a href="register.php">Register</a></p>
          <input type="submit" name="submit" value="Login" class="btn">
       </form>
-
    </section>
 
    <!-- registe section ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    <script>
       let darkMode = localStorage.getItem('dark-mode');
       let body = document.body;
@@ -106,7 +87,5 @@ if (isset($_POST['submit'])) {
          disableDarkMode();
       }
    </script>
-
 </body>
-
 </html>

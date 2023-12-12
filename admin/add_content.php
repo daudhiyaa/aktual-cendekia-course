@@ -63,15 +63,11 @@ if (isset($_POST['submit'])) {
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="../css/admin_style.css">
-
 </head>
-
 <body>
-
    <?php include '../components/admin_header.php'; ?>
 
    <section class="video-form">
-
       <h1 class="heading">Upload Content</h1>
 
       <form action="" method="post" enctype="multipart/form-data">
@@ -95,9 +91,9 @@ if (isset($_POST['submit'])) {
                while ($fetch_playlist = $select_playlists->fetch(PDO::FETCH_ASSOC)) {
             ?>
                   <option value="<?= $fetch_playlist['id']; ?>"><?= $fetch_playlist['title']; ?></option>
-               <?php
+            <?php
                }
-               ?>
+            ?>
             <?php
             } else {
                echo '<option value="" disabled>No Playlist Created Yet!</option>';
@@ -110,27 +106,9 @@ if (isset($_POST['submit'])) {
          <input type="file" name="video" accept="video/*" required class="box">
          <input type="submit" value="upload video" name="submit" class="btn">
       </form>
-
    </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    <?php include '../components/footer.php'; ?>
-
    <script src="../js/admin_script.js"></script>
-
 </body>
-
 </html>

@@ -17,9 +17,6 @@ if (isset($_POST['delete'])) {
    $verify_playlist->execute([$delete_id, $tutor_id]);
 
    if ($verify_playlist->rowCount() > 0) {
-
-
-
       $delete_playlist_thumb = $conn->prepare("SELECT * FROM `playlist` WHERE id = ? LIMIT 1");
       $delete_playlist_thumb->execute([$delete_id]);
       $fetch_thumb = $delete_playlist_thumb->fetch(PDO::FETCH_ASSOC);
@@ -28,9 +25,9 @@ if (isset($_POST['delete'])) {
       $delete_bookmark->execute([$delete_id]);
       $delete_playlist = $conn->prepare("DELETE FROM `playlist` WHERE id = ?");
       $delete_playlist->execute([$delete_id]);
-      $message[] = 'playlist deleted!';
+      $message[] = 'Playlist Deleted!';
    } else {
-      $message[] = 'playlist already deleted!';
+      $message[] = 'Playlist Already Deleted!';
    }
 }
 
@@ -54,15 +51,11 @@ if (isset($_POST['delete'])) {
 </head>
 
 <body>
-
    <?php include '../components/admin_header.php'; ?>
-
    <section class="playlists">
-
       <h1 class="heading">Added Playlists</h1>
 
       <div class="box-container">
-
          <div class="box" style="text-align: center;">
             <h3 class="title" style="margin-bottom: .5rem;">Create New Playlist</h3>
             <a href="add_playlist.php" class="btn">Add Playlist</a>
@@ -80,16 +73,32 @@ if (isset($_POST['delete'])) {
          ?>
                <div class="box">
                   <div class="flex">
-                     <div><i class="fas fa-circle-dot" style="<?php if ($fetch_playlist['status'] == 'active') {
-                                                                  echo 'color:limegreen';
-                                                               } else {
-                                                                  echo 'color:red';
-                                                               } ?>"></i><span style="<?php if ($fetch_playlist['status'] == 'active') {
-                                                                                                                                                                                       echo 'color:limegreen';
-                                                                                                                                                                                    } else {
-                                                                                                                                                                                       echo 'color:red';
-                                                                                                                                                                                    } ?>"><?= $fetch_playlist['status']; ?></span></div>
-                     <div><i class="fas fa-calendar"></i><span><?= $fetch_playlist['date']; ?></span></div>
+                     <div>
+                        <i class="fas fa-circle-dot" 
+                           style="
+                              <?php 
+                              if ($fetch_playlist['status'] == 'active') {
+                                 echo 'color:limegreen';
+                              } else {
+                                 echo 'color:red';
+                              } 
+                              ?>">
+                        </i>
+                        <span 
+                           style="
+                              <?php 
+                              if ($fetch_playlist['status'] == 'active') {
+                                 echo 'color:limegreen';
+                              } else {
+                                 echo 'color:red';
+                              } ?>">
+                              <?= $fetch_playlist['status']; ?>
+                        </span>
+                     </div>
+                     <div>
+                        <i class="fas fa-calendar"></i>
+                        <span><?= $fetch_playlist['date']; ?></span>
+                     </div>
                   </div>
                   <div class="thumb">
                      <span><?= $total_videos; ?></span>
@@ -110,33 +119,15 @@ if (isset($_POST['delete'])) {
             echo '<p class="empty">No Playlist Added Yet!</p>';
          }
          ?>
-
       </div>
-
    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
    <?php include '../components/footer.php'; ?>
 
    <script src="../js/admin_script.js"></script>
-
    <script>
       document.querySelectorAll('.playlists .box-container .box .description').forEach(content => {
          if (content.innerHTML.length > 100) content.innerHTML = content.innerHTML.slice(0, 100);
       });
    </script>
-
 </body>
-
 </html>
