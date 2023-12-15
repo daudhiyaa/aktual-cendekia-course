@@ -168,11 +168,4 @@ Pada user tutor / admin, terdapat beberapa page & fitur / fungsionalitas yang da
 
 ## Video Demo
 
-<iframe 
-  width="560" 
-  height="315"
-  src="https://youtu.be/gsUncNZ4RV8" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
+[![IMAGE ALT TEXT HERE](images/thumbnail-yt.png)](https://youtu.be/gsUncNZ4RV8)
