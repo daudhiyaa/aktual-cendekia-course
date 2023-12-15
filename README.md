@@ -168,4 +168,6 @@ Pada user tutor / admin, terdapat beberapa page & fitur / fungsionalitas yang da
 
 ## Video Demo
 
+Klik image dibawah ini untuk menuju video demo
+
 [![IMAGE ALT TEXT HERE](images/thumbnail-yt.png)](https://youtu.be/gsUncNZ4RV8)
